@@ -1,24 +1,23 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-
+import { updatePosition } from './mesh.js'
 import mesh from './mesh.js'
 
 const scene = new THREE.Scene()
 
 scene.add(mesh)
 
-const axesHelper = new THREE.AxesHelper(200)
-scene.add(axesHelper)
+/* const axesHelper = new THREE.AxesHelper(200)
+scene.add(axesHelper) */
 
 
 const width = window.innerWidth
 const height = window.innerHeight
 
-const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000)
+const camera = new THREE.PerspectiveCamera(60, width / height, 1, 5000)
 
-
-camera.position.set(200, 200, 200)
+camera.position.set(450, 150, 100)
 
 camera.lookAt(0, 0, 0)
 
@@ -29,6 +28,8 @@ renderer.setSize(width, height)
 
 
 function render() {
+  updatePosition()  // 每帧更新顶点位置
+  // mesh.rotateZ(0.003)
   renderer.render(scene, camera)
   requestAnimationFrame(render)
 }
@@ -38,3 +39,8 @@ render()
 document.body.append(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement)
+
+controls.addEventListener('change', () => {
+  console.log(camera.position);
+
+})
