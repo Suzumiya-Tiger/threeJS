@@ -46,7 +46,7 @@ lightFolder.add(pointLight.position, 'z').step(10)
 lightFolder.add(pointLight, 'intensity').step(1000)
 ```
 
-![image-20250406000505304](/Users/heinrichhu/前端项目/threeJS/02_data-gui/assets/image-20250406000505304.png)
+![image-20250406000505304](/assets/image-20250406000505304.png)
 
 我们也可以通过定义其他类型，过一下具体的一些配置:
 
@@ -71,7 +71,7 @@ otherFolder.add(obj, 'fff', { Aaa: 0, Bbb: 0.1, Ccc: 5 })
 otherFolder.add(obj, 'logic')
 ```
 
-![image-20250406001001716](/Users/heinrichhu/前端项目/threeJS/02_data-gui/assets/image-20250406001001716.png)
+![image-20250406001001716](/assets/image-20250406001001716.png)
 
 对数值，可以使用min().max().step()设置选值范围条。
 
