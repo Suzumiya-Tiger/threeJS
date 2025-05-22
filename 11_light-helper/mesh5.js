@@ -27,7 +27,7 @@ mesh.add(plane);
 mesh.add(box);
 mesh.add(box2);
 
-export const light = new THREE.RectAreaLight( new THREE.Color('red'), 20,  100, 100 );
+export const light = new THREE.RectAreaLight( new THREE.Color('red'), 20, 100, 100 );
 light.position.set(400, 500, 300);
 light.lookAt(0, 0, 0);
 
