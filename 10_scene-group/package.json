@@ -1,0 +1,15 @@
+{
+  "name": "10_scene-group",
+  "version": "1.0.0",
+  "description": "Three.js 之所以支持使用 `Group`（基于 `THREE.Object3D` 的容器）来收集和管理不同的模型，主要是为了让场景以**树状结构**（Scene Graph）的方式组织，对象之间能够继承变换（位置、旋转、缩放），并实现更清晰的代码结构、易于批量操作及性能优化[维基百科](https://en.wikipedia.org/wiki/Scene_graph?utm_source=chatgpt.com)。下面将从场景图原理、`Group` 的作用及优点三方面展开说明。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/three": "^0.176.0"
+  }
+}

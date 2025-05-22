@@ -40,7 +40,7 @@ house.add(roof)
 const roof2=roof.clone()
 roof2.rotateX(70/180*Math.PI)
 roof2.position.z=-roof.position.z
-house.add(roof2)
 
+house.add(roof2)
 house.add(doorstep)
 export default house;

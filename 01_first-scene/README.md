@@ -504,6 +504,32 @@ function render() {
 
 如果不使用递归调用，场景就只会渲染一次，而不会持续更新。比如当您使用轨道控制器旋转相机时，场景需要不断重新渲染以反映新的视角。
 
+### 循环是如何形成的？
+
+这个函数能够持续执行的关键在于 requestAnimationFrame(render); 这一行。
+
+1. renderer.render(scene, camera);: 这一行代码是实际执行渲染操作的部分，它告诉Three.js渲染器 (renderer) 使用当前的场景 (scene) 和相机 (camera) 来绘制一帧画面。
+2. requestAnimationFrame(render);:
+
+- requestAnimationFrame 是一个浏览器提供的API（应用程序编程接口）。它的作用是告诉浏览器：“我希望执行一个动画，并请在下次浏览器重绘屏幕之前，调用我指定的这个函数来更新动画。”
+
+- 在这里，我们传递了 render 函数本身作为参数。这意味着我们请求浏览器在下一次屏幕刷新之前再次调用 render 函数。
+
+**当 render() 首次被调用时（通过代码末尾的 render();）：**
+
+1. **它首先渲染当前帧。**
+2. **然后，它调用 requestAnimationFrame(render)，将 render 函数自身注册到浏览器的刷新队列中。**
+3. **浏览器在准备下一次屏幕刷新时，会执行队列中的函数，因此 render 函数会再次被调用。**
+4. **当 render 函数再次执行时，它又会渲染新的一帧，并再次通过 requestAnimationFrame(render) 请求下一次调用。**
+
+这个过程不断重复，就形成了一个与浏览器刷新频率同步的循环（通常是每秒60次，即60FPS）。这样做的好处是：
+
+- 平滑动画: 渲染与显示器的刷新率同步，可以避免画面撕裂，使动画看起来更流畅。
+
+- 性能优化: 当页面不可见或浏览器标签页在后台时，requestAnimationFrame 会自动降低频率或暂停，从而节省CPU资源和电池寿命。
+
+简单来说，render 函数通过 requestAnimationFrame "预约"了自己下一次的执行，从而实现了持续不断的渲染循环。
+
 
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b043a183c67e43758fbef024f8c9d196~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1478&h=570&s=145195&e=png&b=fefefe)
